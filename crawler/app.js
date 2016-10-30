@@ -12,7 +12,6 @@ app.controller("formCtrl", function ($scope, $http) {
             depth: $scope.formData.depth,
             searchmode: $scope.formData.searchmode
         };
-   	console.log(data); 
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=utf-8;'
