@@ -101,18 +101,6 @@ app.controller("formCtrl", function ($scope, $http) {
         }
       });
     };
-
-    /* function overlap(pos, size) {
-    var overlap = false;
-    cy.nodes(':visible').forEach(function (node) {
-        var npos = node.position();
-        if ((pos.x - size) < npos.x && (pos.x + size) > npos.x && (pos.y - size) < npos.y && (pos.y + size) > npos.y) {
-        overlap = true;
-        return false; //break
-     }
-  });
-  return overlap; */
-}
 });
 
 
