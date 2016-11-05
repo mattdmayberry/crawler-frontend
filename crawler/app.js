@@ -21,6 +21,7 @@ app.controller("formCtrl", function ($scope, $http) {
 
         $http.post('http://138.197.207.83:5000/api/requests', data, config)
         .success(function (data, status, headers, config) {
+            $scope.ResponseDetails = data;
             console.log(data);
             console.log(data.id);
             var data_id = data.id;   
