@@ -74,7 +74,7 @@ app.controller("formCtrl", function ($scope, $http) {
         for (var i = 0; i < crawler_data.edges.length; i++) {
             addToGraph(crawler_data.edges[i], crawler);
         }
-        //crawler.fit();
+        crawler.center();
     };
 
 
