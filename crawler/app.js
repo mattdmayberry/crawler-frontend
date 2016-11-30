@@ -27,12 +27,8 @@ app.controller("formCtrl", function ($scope, $http) {
             console.log(data.id);
             var data_id = data.id;   
             var row_ctr = 0;
-            // comenting this out for graph testing purposes
             getData(data_id, row_ctr);
 
-
-            // short circuiting the getData function for graph testing
-            //createGraph(test_data);
         })
         .error(function (data, status, header, config) {
             $scope.ResponseDetails = "Data: " + data +
