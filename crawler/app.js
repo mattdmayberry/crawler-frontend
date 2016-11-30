@@ -47,7 +47,6 @@ app.controller("formCtrl", function ($scope, $http) {
             }
         }
 
-        // wait 5 seconds and see if the search is complete by checking for data.rows
         wait(5000);
         $http.get('http://138.197.207.83:5000/api/results/' + data_id + '/rows', config)
                 .success(function (data, status, headers, config) {
@@ -139,7 +138,6 @@ app.controller("formCtrl", function ($scope, $http) {
             end = new Date().getTime();
       }
     }
-
 
 });
 
