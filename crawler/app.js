@@ -83,6 +83,7 @@ app.controller("formCtrl", function ($scope, $http) {
             searchmode: $scope.formData.searchmode
         };
         addToCookie(data.url);
+        document.getElementById("loadSpinner").style.display = "block";
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=utf-8;'
@@ -171,6 +172,7 @@ app.controller("formCtrl", function ($scope, $http) {
         crawler.layout({
             name: 'circle'
         });
+        document.getElementById("loadSpinner").style.display = "none";
         // print all the ids of the nodes in the graph
         crawler.nodes().forEach(function( ele ){
             ele.on('tap', function(evt){
