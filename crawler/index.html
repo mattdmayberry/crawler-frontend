@@ -46,10 +46,13 @@
 			<!-- crawler-form -->
 			<form id="crawler-form" ng-controller="formCtrl" class="form-inline">
 				<!-- URL -->
-				<div class="form-group">
+				<div id="urlBox" class="form-group" style="border-radius: 7px;">
 					<label class="sr-only" for="inputURL">url</label>
 					<input ng-model="formData.inputURL" type="text" class="form-control" id="inputURL" placeholder="url" required>
-					<!--<span ng-show="urlRequired" class="help-block with errors">{{urlRequired}}</span>-->	
+					<!--<span ng-show="urlRequired" class="help-block with errors">{{urlRequired}}</span>-->
+					<label id="orLabel" style="display: none;">or</label>
+					<select id="selectNumber" ng-model="formData.inputURL" class="form-control" style="display: none;" required>
+					</select>
 				</div>
 				<!-- KEYWORD -->
 				<div class="form-group">
@@ -77,40 +80,9 @@
 			</form><!-- crawler-form -->
 		</div><!-- /.starter-template -->
 	</div><!-- /.container -->
-	<div class="container">
-		<div class="starter-template">
-			<!-- crawler-form -->
-			<form id="prevForm" ng-controller="formCtrl" class="form-inline" style="display: none">
-				<div class="form-group">
-					<select id="selectNumber" ng-model="formData.inputURL" class="form-control" required>
-					</select>
-				</div>
-				<!-- KEYWORD -->
-				<div class="form-group">
-					<label class="sr-only" for="keyword">keyword</label>
-					<input ng-model="formData.keyword" type="text" class="form-control" id="keyword" placeholder="keyword">
-				</div>
-				<!-- DEPTH -->
-				<div class="form-group">
-					<label class="sr-only" for="depth">depth</label>
-					<input ng-model="formData.depth" type="number" class="form-control" id="depth" placeholder="depth" required max="4">
-					<!--<span ng-show="depthRequired" class="help-block with errors">{{depthRequired}}</span>-->
-				</div>
-				<!-- SEARCH -->
-				<div class="form-group">
-					<select ng-model="formData.searchmode" class="form-control" required>
-						<option>DFS</option>
-						<option>BFS</option>
-					</select>
-					<!--<span ng-show="searchRequired" class="help-block with errors">{{searchRequired}}</span>-->
-				</div>
-				<!-- SUBMIT BUTTON -->
-				<div class="form-group">
-					<button type="submit" ng-click="postData()" class="btn btn-default">crawl</button>
-				</div>
-			</form>
-		</div><!-- /.starter-template -->
-	</div><!-- /.container -->
+	<div id="nodeData" style="text-align: center;">
+		<a id="nodelink" href=""></a>
+	</div>
 	<div id="crawler"></div>
 	<!--<script src="components/graph.js" type="text/javascript"></script>-->
 	<!-- Bootstrap core JS

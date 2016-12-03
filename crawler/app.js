@@ -55,9 +55,14 @@ function popPrevDropdown() {
     options = JSON.parse(options);
     options = options.data;
     for(var i = 0; i < options.length; i++) {
-        document.getElementById("prevForm").style.display = "inline";
+        document.getElementById("selectNumber").style.display = "inline";
+        document.getElementById("orLabel").style.display = "inline";
+        document.getElementById("urlBox").style.border = "1px solid lightgrey";
+        //document.getElementById("urlBox").style.border-radius = "7px";
+        document.getElementById("urlBox").style.padding = "4px";
         var opt = options[i];
         var el = document.createElement("option");
+        console.log(opt);
         el.textContent = opt;
         el.value = opt;
         select.appendChild(el);
@@ -165,7 +170,16 @@ app.controller("formCtrl", function ($scope, $http) {
 
         crawler.layout({
             name: 'circle'
-        });  
+        });
+        // print all the ids of the nodes in the graph
+        crawler.nodes().forEach(function( ele ){
+            ele.on('tap', function(evt){
+                console.log( 'tap ' + ele.id());
+                document.getElementById("nodelink").innerHTML = ele.id();
+                var link = document.getElementById("nodelink");
+                link.setAttribute("href", "http://" + ele.id());
+            });
+        });
     };
 
 
