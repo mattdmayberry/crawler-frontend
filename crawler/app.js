@@ -1,6 +1,69 @@
 // app.js
 "use strict";
 
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function addToCookie(cvalue) {
+    var items=getCookie("searches");
+    items = JSON.parse(items);
+    var alreadyThere = false;
+    for(var i = 0; i < items.data.length; i++) {
+        if(items.data[i]==cvalue){
+            alreadyThere = true;
+        }
+    }
+    if (!alreadyThere) {
+        items.data.push(cvalue);
+    }
+    items = JSON.stringify(items);
+    setCookie("searches", items, 30);
+
+}
+
+function checkCookie() {
+    var search=getCookie("searches");
+    if (search == "") {
+        setCookie("searches", '{"data":[]}', 30);
+    }
+}
+
+checkCookie();
+
+function popPrevDropdown() {
+    var select = document.getElementById("selectNumber");
+    var options = getCookie("searches");
+    options = JSON.parse(options);
+    options = options.data;
+    for(var i = 0; i < options.length; i++) {
+        document.getElementById("prevForm").style.display = "inline";
+        var opt = options[i];
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+    }
+}
+
 var app = angular.module('crawler',[]);
 
 app.controller("formCtrl", function ($scope, $http) {
@@ -14,6 +77,7 @@ app.controller("formCtrl", function ($scope, $http) {
             depth: $scope.formData.depth,
             searchmode: $scope.formData.searchmode
         };
+        addToCookie(data.url);
         var config = {
             headers : {
                 'Content-Type': 'application/json;charset=utf-8;'
@@ -140,20 +204,4 @@ app.controller("formCtrl", function ($scope, $http) {
     }
 
 });
-
-
     
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
