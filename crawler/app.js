@@ -177,7 +177,7 @@ app.controller("formCtrl", function ($scope, $http) {
                 console.log( 'tap ' + ele.id());
                 document.getElementById("nodelink").innerHTML = ele.id();
                 var link = document.getElementById("nodelink");
-                link.setAttribute("href", "http://" + ele.id());
+                link.setAttribute("href", ele.id());
             });
         });
     };
